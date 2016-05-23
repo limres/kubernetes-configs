@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: container-registry
+  namespace: system-tools
+  labels:
+    app: container-registry
+spec:
+  rules:
+  - host: lcr.lh
+    http:
+      paths:
+      - backend:
+          serviceName: container-registry
+          servicePort: 5000

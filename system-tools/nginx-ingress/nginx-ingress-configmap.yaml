@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-ingress
+  namespace: system-tools
+  labels:
+    app: nginx-ingress
+data:
+  body-size: 4096m
