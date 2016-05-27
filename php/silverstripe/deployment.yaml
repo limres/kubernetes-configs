@@ -32,6 +32,14 @@ spec:
         volumeMounts:
         - name: silverstripe
           mountPath: /var/www/html/public_html
+      - name: composer
+        image: composer/composer:php5
+        command:
+          - sleep
+          - "3600"
+        volumeMounts:
+        - name: silverstripe
+          mountPath: /app
       restartPolicy: Always
       volumes:
       - name: silverstripe
