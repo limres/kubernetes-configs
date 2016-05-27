@@ -1,0 +1,39 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: silverstripe
+  labels:
+    app: silverstripe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: silverstripe
+  template:
+    metadata:
+      labels:
+        app: silverstripe
+    spec:
+      containers:
+      - name: nginx
+        image: lcr.lh/silverstripe-nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: silverstripe
+          mountPath: /var/www/html/public_html
+      - name: php
+        image: lcr.lh/silverstripe-php
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        volumeMounts:
+        - name: silverstripe
+          mountPath: /var/www/html/public_html
+      restartPolicy: Always
+      volumes:
+      - name: silverstripe
+        hostPath:
+          path: /mnt/host-storage/silverstripe

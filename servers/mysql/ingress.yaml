@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: phpmyadmin
+  labels:
+    app: mysql
+spec:
+  rules:
+  - host: phpmyadmin.lh
+    http:
+      paths:
+      - backend:
+          serviceName: mysql
+          servicePort: 80

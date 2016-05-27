@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: silverstripe
+  labels:
+    app: silverstripe
+spec:
+  rules:
+  - host: silverstripe.lh
+    http:
+      paths:
+      - backend:
+          serviceName: silverstripe
+          servicePort: 80

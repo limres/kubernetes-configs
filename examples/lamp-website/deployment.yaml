@@ -1,0 +1,39 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: lamp
+  labels:
+    app: lamp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lamp
+  template:
+    metadata:
+      labels:
+        app: lamp
+    spec:
+      containers:
+      - name: nginx
+        image: lcr.lh/lamp-nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: lamp
+          mountPath: /var/www/html/public_html
+      - name: php
+        image: lcr.lh/lamp-php
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        volumeMounts:
+        - name: lamp
+          mountPath: /var/www/html/public_html
+      restartPolicy: Always
+      volumes:
+      - name: lamp
+        hostPath:
+          path: /mnt/host-storage/www

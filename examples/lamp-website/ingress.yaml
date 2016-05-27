@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: lamp
+  labels:
+    app: lamp
+spec:
+  rules:
+  - host: lamp-website.lh
+    http:
+      paths:
+      - backend:
+          serviceName: lamp
+          servicePort: 80
