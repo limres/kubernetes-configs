@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: registry
-        image: registry
+        image: registry:2
         env:
         - name: STORAGE_PATH
           value: '/var/lib/registry'
@@ -30,4 +30,4 @@ spec:
       volumes:
       - name: registry-data
         hostPath:
-          path: /var/lib/docker/registry
+          path: /var/lib/registry

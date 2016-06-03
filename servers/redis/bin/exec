@@ -1,0 +1,4 @@
+#!/bin/bash
+POD_NAME=$(kubectl get pods -l app=redis --template="{{println (index .items 0).metadata.name}}")
+
+kubectl exec $POD_NAME -c $1 -- ${@:2}

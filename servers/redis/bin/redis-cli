@@ -1,3 +1,5 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-$DIR/exec "composer" "composer $@"
+CMD="redis-cli $@"
+
+$DIR/exec "redis -ti" "$CMD"
