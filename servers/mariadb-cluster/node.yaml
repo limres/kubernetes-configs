@@ -1,0 +1,70 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-node
+  labels:
+    app: mariadb-cluster
+spec:
+  ports:
+  - port: 3306
+    name: mariadb
+  - port: 4444
+    name: state-snapshot-transfer
+  - port: 4567
+    name: replication-traffic
+  - port: 4568
+    name: incremental-state-transfer
+  selector:
+    app: mariadb-cluster
+    node: mariadb-node
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mariadb-node
+  labels:
+    app: mariadb-cluster
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb-cluster
+      node: mariadb-node
+  template:
+    metadata:
+      labels:
+        app: mariadb-cluster
+        node: mariadb-node
+    spec:
+      containers:
+      - name: database
+        image: lcr.lh/mariadb-database
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3306
+        - containerPort: 4444
+        - containerPort: 4567
+        - containerPort: 4568
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "password"
+        - name: MYSQL_INITDB_SKIP_TZINFO
+          value: "yes"
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        command: ["/bin/sh", "-c",
+          "docker-entrypoint.sh mysqld \
+            --wsrep-node-address=${POD_IP} \
+            --wsrep_cluster_name=k8s-mariadb \
+            --wsrep_cluster_address=gcomm://mariadb-bootstrap-node.default.svc.cluster.local"]

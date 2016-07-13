@@ -7,8 +7,6 @@ metadata:
     app: mysql
 spec:
   ports:
-  - name: phpmyadmin
-    port: 80
   - name: mysql
     port: 3306
   selector:

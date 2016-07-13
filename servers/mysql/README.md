@@ -1,1 +1,1 @@
-mysql server with phpmyadmin for development machines
+simple mysql server

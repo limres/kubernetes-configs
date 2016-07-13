@@ -1,0 +1,29 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  labels:
+    app: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      - name: phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        ports:
+        - containerPort: 80
+        env:
+        - name: PMA_PORT
+          value: "3306"
+        - name: PMA_HOSTS
+          value: "mysql.default.svc.cluster.local,mariadb-bootstrap-node.default.svc.cluster.local,mariadb-node.default.svc.cluster.local"
+        - name: PHP_UPLOAD_MAX_FILESIZE
+          value: "4096M"

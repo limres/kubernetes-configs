@@ -40,7 +40,6 @@ spec:
         volumeMounts:
         - name: silverstripe
           mountPath: /app
-      restartPolicy: Always
       volumes:
       - name: silverstripe
         hostPath:

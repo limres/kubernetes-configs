@@ -14,7 +14,7 @@ spec:
         mountPath: /usr/src/app
       command:
         - sleep
-        - "3600"
+        - "86400"
   restartPolicy: Always
   volumes:
   - name: node-script

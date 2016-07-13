@@ -3,12 +3,12 @@ kind: Ingress
 metadata:
   name: phpmyadmin
   labels:
-    app: mysql
+    app: phpmyadmin
 spec:
   rules:
   - host: phpmyadmin.lh
     http:
       paths:
       - backend:
-          serviceName: mysql
+          serviceName: phpmyadmin
           servicePort: 80

@@ -26,18 +26,6 @@ spec:
         env:
           - name: MYSQL_ROOT_PASSWORD
             value: password
-      - name: phpmyadmin
-        image: phpmyadmin/phpmyadmin
-        ports:
-        - containerPort: 80
-        env:
-        - name: PMA_PORT
-          value: "3306"
-        - name: PMA_HOST
-          value: "127.0.0.1"
-        - name: PHP_UPLOAD_MAX_FILESIZE
-          value: "4096M"
-      restartPolicy: Always
       volumes:
       - name: mysql
         hostPath:
