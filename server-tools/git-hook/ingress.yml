@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: git-hook
+  labels:
+    app: git-hook
+spec:
+  rules:
+  - host: git-hook.lh
+    http:
+      paths:
+      - backend:
+          serviceName: git-hook
+          servicePort: 8555

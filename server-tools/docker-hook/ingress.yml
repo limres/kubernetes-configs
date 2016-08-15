@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: docker-hook
+  labels:
+    app: docker-hook
+spec:
+  rules:
+  - host: docker-hook.lh
+    http:
+      paths:
+      - backend:
+          serviceName: docker-hook
+          servicePort: 8555

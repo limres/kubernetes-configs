@@ -1,0 +1,25 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: docker-hook
+  labels:
+    app: docker-hook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docker-hook
+  template:
+    metadata:
+      labels:
+        app: docker-hook
+    spec:
+      containers:
+      - name: docker-hook
+        image: lcr.lh/docker-hook
+        ports:
+        - containerPort: 8555
+        env:
+        - name: DOCKER_HOOK_TOKEN
+          value: super-secret-token

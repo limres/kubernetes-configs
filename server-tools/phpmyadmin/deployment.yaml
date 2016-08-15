@@ -2,6 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  namespace: default
   name: phpmyadmin
   labels:
     app: phpmyadmin
@@ -24,6 +25,6 @@ spec:
         - name: PMA_PORT
           value: "3306"
         - name: PMA_HOSTS
-          value: "mysql.default.svc.cluster.local,mariadb-bootstrap-node.default.svc.cluster.local,mariadb-node.default.svc.cluster.local"
+          value: "mysql.default.svc.cluster.local,lb-site-mysql.chtnky1ze5af.ap-southeast-2.rds.amazonaws.com"
         - name: PHP_UPLOAD_MAX_FILESIZE
           value: "4096M"

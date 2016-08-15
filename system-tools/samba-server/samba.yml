@@ -16,6 +16,10 @@ spec:
       labels:
         app: samba-server
     spec:
+      volumes:
+      - name: storage
+        hostPath:
+          path: /volumes
       containers:
       - name: samba
         image: lcr.lh/samba
@@ -32,11 +36,7 @@ spec:
         - protocol: TCP
           containerPort: 445
           hostPort: 445
-        args: ["-u kubernetes;password", "-s host-storage;/mnt/host-storage;yes;no;no;kubernetes"]
+        args: ["-u kubernetes;password", "-s volumes;/volumes;yes;no;no;kubernetes"]
         volumeMounts:
-        - mountPath: /mnt/host-storage
-          name: host-storage
-      volumes:
-      - name: host-storage
-        hostPath:
-          path: /mnt/host-storage
+        - name: storage
+          mountPath: /volumes

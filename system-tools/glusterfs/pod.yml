@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: gluster
+  name: gluster
+spec:
+  hostNetwork: true
+  nodeSelector:
+    name: 172.18.0.101
+  volumes:
+  - name: brickpath
+    hostPath:
+      path: /mnt/glusterfs
+  containers:
+  - name: glusterfs
+    image: gluster/gluster-centos
+    volumeMounts:
+    - mountPath: /mnt/glusterfs
+      name: brickpath
+    securityContext:
+      capabilities: {}
+      privileged: true

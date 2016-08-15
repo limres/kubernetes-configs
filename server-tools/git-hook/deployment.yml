@@ -1,0 +1,31 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: git-hook
+  labels:
+    app: git-hook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: git-hook
+  template:
+    metadata:
+      labels:
+        app: git-hook
+    spec:
+      containers:
+      - name: git-hook
+        image: lcr.lh/git-hook
+        ports:
+        - containerPort: 8555
+        env:
+        - name: GIT_HOOK_REPO
+          value: git@github.com:limres/legalbeagle.co.nz.git
+        - name: GIT_HOOK_BRANCH
+          value: develop
+        - name: GIT_HOOK_TOKEN
+          value: super-secret-token
+        - name: GIT_HOOK_DIR
+          value: /usr/local/repo
