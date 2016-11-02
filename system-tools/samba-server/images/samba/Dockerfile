@@ -23,10 +23,13 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     echo '' >>/etc/samba/smb.conf && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/*
+
 COPY samba.sh /usr/bin/
+
+RUN chmod a+x /usr/bin/samba.sh
 
 VOLUME ["/etc/samba"]
 
 EXPOSE 137 139 445
 
-ENTRYPOINT ["samba.sh"]
+ENTRYPOINT ["/usr/bin/samba.sh"]

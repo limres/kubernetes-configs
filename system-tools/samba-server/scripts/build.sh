@@ -19,4 +19,4 @@ cd "$( dirname "${BASH_SOURCE[0]}" )";
 
 # nginx image
 docker build -t $REGISTRY/$IMAGE_BASE_NAME:$TAG ../images/samba
-docker push $REGISTRY/$IMAGE_BASE_NAME:$TAG
+docker push  $REGISTRY/$IMAGE_BASE_NAME:$TAG

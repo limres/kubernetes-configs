@@ -15,6 +15,7 @@ spec:
       labels:
         app: container-registry
     spec:
+      hostNetwork: true
       containers:
       - name: registry
         image: registry:2
