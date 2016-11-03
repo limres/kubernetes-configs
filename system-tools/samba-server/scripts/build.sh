@@ -1,6 +1,6 @@
 #!/bin/bash
 IMAGE_BASE_NAME="samba"
-DEFAULT_REGISTRY="lcr.lh"
+DEFAULT_REGISTRY="docker.k8s"
 DEFAULT_TAG="latest"
 
 TAG=$1

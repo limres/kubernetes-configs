@@ -23,7 +23,7 @@ spec:
           path: /volumes
       containers:
       - name: samba
-        image: lcr.lh/samba
+        image: docker.k8s/samba
         imagePullPolicy: Always
         ports:
         - protocol: UDP

@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: container-registry
+  name: docker-registry
   namespace: system-tools
   labels:
-    app: container-registry
+    app: docker-registry
 spec:
   tls:
   - hosts:
-    - lcr.lh
-    secretName: container-registry
+    - docker.k8s
+    secretName: docker-registry-tls
   rules:
-  - host: lcr.lh
+  - host: docker.k8s
     http:
       paths:
       - backend:
-          serviceName: container-registry
+          serviceName: docker-registry
           servicePort: 5000

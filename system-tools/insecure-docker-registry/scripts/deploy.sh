@@ -1,7 +1,7 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-kubectl create \
+kubectl apply \
   -f $DIR/../secret.yaml \
   -f $DIR/../controller.yaml \
   -f $DIR/../service.yaml \
