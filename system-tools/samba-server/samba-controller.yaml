@@ -20,7 +20,7 @@ spec:
       volumes:
       - name: storage
         hostPath:
-          path: /volumes
+          path: /host
       containers:
       - name: samba
         image: docker.k8s/samba
@@ -38,7 +38,7 @@ spec:
         - protocol: TCP
           containerPort: 445
           hostPort: 445
-        args: ["-u kubernetes;kubernetes", "-s volumes;/volumes;yes;no;no;kubernetes"]
+        args: ["-u kubernetes;kubernetes", "-s host;/host;yes;no;no;kubernetes"]
         volumeMounts:
         - name: storage
-          mountPath: /volumes
+          mountPath: /host

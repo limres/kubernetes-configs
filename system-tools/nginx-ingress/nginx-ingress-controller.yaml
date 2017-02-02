@@ -18,7 +18,7 @@ spec:
       hostNetwork: true
       containers:
       - name: controller
-        image: gcr.io/google_containers/nginx-ingress-controller:0.8.3
+        image: 973958684765.dkr.ecr.ap-southeast-2.amazonaws.com/nginx-ingress-controller:latest
         imagePullPolicy: Always
         readinessProbe:
           httpGet:

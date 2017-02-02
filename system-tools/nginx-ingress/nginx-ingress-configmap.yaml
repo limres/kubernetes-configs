@@ -8,4 +8,5 @@ metadata:
     app: nginx-ingress
 data:
   body-size: 4096m
+  proxy-buffer-size: 256k
   custom-errors: "false"
