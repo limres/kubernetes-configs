@@ -40,7 +40,7 @@ Add to end of `/etc/fstab`
 ### NFS (local storage)
 ```
 sudo mkdir /local
-sduo chmod 777 /local
+sudo chmod 777 /local
 ```
 
 ```
