@@ -56,3 +56,11 @@ Restart nfs server
 ```
 service nfs-kernel-server restart
 ```
+
+### Hosts
+Add to `/etc/hosts`
+
+```
+172.17.4.99	samba.k8s
+172.17.4.99	docker.k8s
+```
